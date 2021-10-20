@@ -1,0 +1,221 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>PC Majster</title>
+    <meta name="description" content="website description" />
+    <meta name="keywords" content="website keywords, website keywords" />
+    <meta http-equiv="content-type" content="text/html; charset=windows-1252" />
+    <link href="../static/css/style.css" th:href="@{/css/style.css}" rel="stylesheet" />
+</head>
+
+<body>
+<div id="main">
+    <div id="header">
+        <div id="logo">
+            <div id="logo_text">
+                <!-- class="logo_colour", allows you to change the colour of the text -->
+                <h1><a href="/index">PC<span class="logo_colour">Majster</span></a></h1>
+                <h2>Z nami zlozysz komputer marzen</h2>
+            </div>
+        </div>
+        <ul id="menu">
+            <li> <a href="/cpu/list"> Procesory</a>
+            </li>
+            <li> <a href="/mobo/list"> Plyty Glowne</a>
+            </li>
+            <li> <a href="/ram/list"> RAM-y</a>
+            </li>
+            <li><a href="/gpu/list"> Karty Graficzne</a>
+            </li>
+            <li><a href="/zasilacz/list"> Zasilacze</a>
+            </li>
+            <li><a href="/dysk/list"> Dyski</a>
+            </li>
+            <li><a href="/naped/list"> Napedy Optyczne</a>
+            </li>
+            <li><a href="/obudowa/list"> Obudowy </a>
+            </li>
+
+            <th:block th:unless="${session.klientId!=null}">
+                <li><a href="/rejestracja"> Rejestracja</a></li>
+                <li> <a href="/logowanie"> Logowanie</a></li>
+            </th:block>
+            <li> <a href="/komputer/skladanie"> Twoj Komputer</a></li>
+
+            <li><a href="/koszyk/list"> Koszyk</a></li>
+            <li><a href="/zamowienia/list"> Zamowienia</a> </li>
+
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+
+
+        </ul>
+    </div>
+
+
+<table>
+    <th> </th>
+    <th>Producent</th>
+    <th>Nazwa</th>
+    <th>Socket</th>
+    <th>Kształt</th>
+    <th>Chipset</th>
+    <th>Typ pamięci</th>
+    <th>Sloty pamięci</th>
+    <th>Max pamięć</th>
+    <th>Szybkość pamięci</th>
+    <th>PCIe X16</th>
+    <th>PCIe X8</th>
+    <th>PCIe X4</th>
+    <th>PCIe X1</th>
+    <th>mSata</th>
+    <th>Sata6</th>
+    <th>M2</th>
+    <th>USB2.0</th>
+    <th>USB3.0</th>
+
+    <th>Cena</th>
+
+
+    <tr th:each="plytaGlowna : ${plytaGlowna}">
+        <td>
+            <img width="100px" height="100px" th:src="${plytaGlowna.obrazek}" />
+        </td>
+        <td>
+            <p th:text="${plytaGlowna.producent}"></p>
+        </td>
+        <td>
+            <p th:text="${plytaGlowna.nazwa}"></p>
+        </td>
+        <td>
+            <p th:text="${plytaGlowna.socket}"></p>
+        </td>
+
+        <td>
+            <p th:text="${plytaGlowna.typKsztaltu}"></p>
+        </td>
+
+        <td>
+            <p th:text="${plytaGlowna.chipset}"></p>
+        </td>
+        <td>
+            <p th:text="${plytaGlowna.typPamieci}"></p>
+        </td>
+        <td>
+            <p th:text="${plytaGlowna.slotyPamieci}"></p>
+        </td>
+        <td>
+            <p th:text="${plytaGlowna.maxObslugiwanaIloscPamieci}"></p>
+        </td>
+        <td>
+            <p th:text="${plytaGlowna.obslugiwaneSzybkosciPamieci}"></p>
+        </td>
+
+
+
+        <td>
+            <p th:text="${plytaGlowna.slotyPCIeX16}"></p>
+        </td>
+        <td>
+            <p th:text="${plytaGlowna.slotyPCIeX8}"></p>
+        </td>
+        <td>
+            <p th:text="${plytaGlowna.slotyPCIeX4}"></p>
+        </td>
+        <td>
+            <p th:text="${plytaGlowna.slotyPCIeX1}"></p>
+        </td>
+        <td>
+            <p th:text="${plytaGlowna.slotyMSata}"></p>
+        </td>
+        <td>
+            <p th:text="${plytaGlowna.slotySata6Gb}"></p>
+        </td>
+        <td>
+            <p th:text="${plytaGlowna.slotyM2}"></p>
+        </td>
+        <td>
+            <p th:text="${plytaGlowna.wejsciaUSB20}"></p>
+        </td>
+        <td>
+            <p th:text="${plytaGlowna.wejsciaUSB30}"></p>
+        </td>
+
+
+        <td>
+            <p th:text="${plytaGlowna.cena}+ ' zł'"></p>
+        </td>
+
+
+        <td>
+            <form th:action="@{/mobo/dodaj}"  method="POST">
+                <input name="plytaGlownaId" th:value="${plytaGlowna.plytaGlownaId}" type="hidden"/>
+                <input type="submit" value="Wybierz" class="btn btn-red" />
+            </form>
+        </td>
+    </tr>
+
+
+</table>
+
+    <div id="content_footer"></div>
+    <div id="footer">
+        <p>Copyright &copy; PCMajster</a></p>
+    </div>
+</div>
+
+
+</body>
+</html>

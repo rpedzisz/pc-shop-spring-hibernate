@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<a href="/index"> Index</a>
+<th:block th:unless="${session.klientId!=null}">
+<a href="/rejestracja"> Rejestracja</a>
+<a href="/logowanie"> Logowanie</a>
+
+</th:block>
+<a href="/cpu/list"> Procesor</a>
+<a href="/mobo/list"> Płyta Główna</a>
+<a href="/ram/list"> RAM</a>
+<a href="/gpu/list"> Karta Graficzna</a>
+<a href="/zasilacz/list"> Zasilacz</a>
+<a href="/dysk/list"> Dysk</a>
+<a href="/naped/list"> Napęd Optyczny</a>
+<a href="/obudowa/list"> Obudowa</a>
+
+<a href="/komputer/skladanie"> Twój Komputer</a>
+
+<a href="/koszyk/list"> Koszyk</a>
+<th:block th:unless="${session.klientId==null}">
+    <a href="/zamowienia/list"> Zamówienia</a>
+<form th:action="@{/wylogowanie}" >
+    <input type="submit" value="Wyloguj się" class="btn btn-red" />
+</form>
+</th:block>
+
+
+
+
+
+
+
+<p></p>
+
+</html>

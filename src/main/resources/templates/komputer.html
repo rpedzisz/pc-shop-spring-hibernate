@@ -1,0 +1,508 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>PC Majster</title>
+    <meta name="description" content="website description" />
+    <meta name="keywords" content="website keywords, website keywords" />
+    <meta http-equiv="content-type" content="text/html; charset=windows-1252" />
+    <link href="../static/css/style.css" th:href="@{/css/style.css}" rel="stylesheet" />
+</head>
+
+<body>
+<div id="main">
+    <div id="header">
+        <div id="logo">
+            <div id="logo_text">
+                <!-- class="logo_colour", allows you to change the colour of the text -->
+                <h1><a href="/index">PC<span class="logo_colour">Majster</span></a></h1>
+                <h2>Z nami zlozysz komputer marzen</h2>
+            </div>
+        </div>
+        <ul id="menu">
+            <li> <a href="/cpu/list"> Procesory</a>
+            </li>
+            <li> <a href="/mobo/list"> Plyty Glowne</a>
+            </li>
+            <li> <a href="/ram/list"> RAM-y</a>
+            </li>
+            <li><a href="/gpu/list"> Karty Graficzne</a>
+            </li>
+            <li><a href="/zasilacz/list"> Zasilacze</a>
+            </li>
+            <li><a href="/dysk/list"> Dyski</a>
+            </li>
+            <li><a href="/naped/list"> Napedy Optyczne</a>
+            </li>
+            <li><a href="/obudowa/list"> Obudowy </a>
+            </li>
+
+            <th:block th:unless="${session.klientId!=null}">
+                <li><a href="/rejestracja"> Rejestracja</a></li>
+                <li> <a href="/logowanie"> Logowanie</a></li>
+            </th:block>
+            <li> <a href="/komputer/skladanie"> Twoj Komputer</a></li>
+
+            <li><a href="/koszyk/list"> Koszyk</a></li>
+            <li><a href="/zamowienia/list"> Zamowienia</a> </li>
+
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+
+
+        </ul>
+    </div>
+
+
+<h2>Twój komputer</h2>
+<table>
+    <th:block th:each="komputer : ${komputer}">
+
+        <tr th:if="${komputer.procesor == null}" >
+            <td>
+                <p>Procesor:</p>
+            </td>
+
+
+            <td>
+                <form th:action="@{/cpu/list}" >
+                    <input type="submit" value="Dodaj Procesor" class="btn btn-red" />
+                </form>
+            </td>
+        </tr>
+
+        <tr th:unless="${komputer.procesor == null}">
+            <td>
+                <p>Procesor:</p>
+            </td>
+            <td>
+                <img width="100px" height="100px" th:src="${komputer.procesor.obrazek}" />
+            </td>
+
+            <td>
+                <p th:text="${komputer.procesor.producent}"></p>
+            </td>
+
+            <td>
+                <p th:text="${komputer.procesor.nazwa}"></p>
+            </td>
+
+            <td>
+                <p th:text="${komputer.procesor.cena} +' zł' "></p>
+            </td>
+
+            <td>
+                <form th:action="@{/komputer/skladanie/usun}"  method="POST">
+                    <input name="delete" value="procesor" type="hidden"/>
+                    <input type="submit" value="Usuń" class="btn btn-red" />
+                </form>
+            </td>
+
+        </tr>
+
+        <tr th:if="${komputer.plytaGlowna == null}" >
+            <td>
+                <p>Płyta Główna:</p>
+            </td>
+
+            <td>
+                <form th:action="@{/mobo/list}"  >
+                    <input type="submit" value="Dodaj Płytę Główną" class="btn btn-red" />
+                </form>
+            </td>
+        </tr>
+
+        <tr th:unless="${komputer.plytaGlowna == null}">
+            <td>
+                <p>Płyta Główna:</p>
+            </td>
+            <td>
+                <img width="100px" height="100px" th:src="${komputer.plytaGlowna.obrazek}" />
+            </td>
+
+            <td>
+                <p th:text="${komputer.plytaGlowna.producent}"></p>
+            </td>
+
+
+            <td>
+                <p th:text="${komputer.plytaGlowna.nazwa}"></p>
+            </td>
+
+            <td>
+                <p th:text="${komputer.plytaGlowna.cena} +' zł' "></p>
+            </td>
+
+            <td>
+                <form th:action="@{/komputer/skladanie/usun}"  method="POST">
+                    <input name="delete" value="plyta_glowna" type="hidden"/>
+                    <input type="submit" value="Usuń" class="btn btn-red" />
+                </form>
+            </td>
+
+        </tr>
+
+
+
+
+
+
+        <tr th:unless="${komputer.ram.isEmpty()}">
+
+            <tr th:each="ram : ${ram}">
+                <td><p th:text="'RAM' + ${ramStat.index}"></p> </td>
+                <td>   <img width="100px" height="100px" th:src="${ram.obrazek}" /></td>
+                <td>  <p th:text="${ram.producent}"></p></td>
+                <td>    <p th:text="${ram.nazwa}"></p></td>
+                <td>    <p th:text="${ram.cena} + ' zł'"></p></td>
+                <td>
+                    <form th:action="@{/komputer/skladanie/usunram}"  method="POST">
+                        <input name="delete_ram" th:value="${ramStat.index}" type="hidden"/>
+                        <input type="submit" value="Usuń" class="btn btn-red" />
+                    </form>
+                </td>
+
+            </tr>
+
+
+
+
+        </tr>
+        <tr th:unless="${komputer.ram.isEmpty()}">
+                <td></td>
+            <td>
+                <form th:action="@{/ram/list}" >
+                    <input type="submit" value="Dodaj Kolejny RAM" class="btn btn-red" />
+                </form>
+            </td>
+        </tr>
+
+
+        <tr th:if="${komputer.ram.isEmpty() }" >
+
+            <td>RAM:</td>
+
+            <td>
+                <form th:action="@{/ram/list}" >
+                    <input type="submit" value="Dodaj RAM" class="btn btn-red" />
+                </form>
+            </td>
+
+
+
+        </tr>
+
+
+
+
+
+
+
+
+        <tr th:if="${komputer.kartaGraficzna == null}" >
+            <td>
+                <p>Karta Graficzna:</p>
+            </td>
+
+            <td>
+                <form th:action="@{/gpu/list}">
+                    <input type="submit" value="Dodaj GPU" class="btn btn-red" />
+                </form>
+            </td>
+        </tr>
+
+        <tr th:unless="${komputer.kartaGraficzna == null}">
+            <td>
+                <p>Karta Graficzna:</p>
+            </td>
+            <td>
+                <img width="100px" height="100px" th:src="${komputer.kartaGraficzna.obrazek}" />
+            </td>
+
+            <td>
+                <p th:text="${komputer.kartaGraficzna.producent}"></p>
+            </td>
+
+
+            <td>
+                <p th:text="${komputer.kartaGraficzna.nazwa}"></p>
+            </td>
+
+            <td>
+                <p th:text="${komputer.kartaGraficzna.cena} +' zł' "></p>
+            </td>
+
+            <td>
+                <form th:action="@{/komputer/skladanie/usun}"  method="POST">
+                    <input name="delete" value="karta_graficzna" type="hidden"/>
+                    <input type="submit" value="Usuń" class="btn btn-red" />
+                </form>
+            </td>
+
+        </tr>
+
+
+        <tr th:if="${komputer.zasilacz == null}" >
+            <td>
+                <p>Zasilacz:</p>
+            </td>
+
+            <td>
+                <form th:action="@{/zasilacz/list}">
+                    <input type="submit" value="Dodaj Zasilacz" class="btn btn-red" />
+                </form>
+            </td>
+        </tr>
+
+        <tr th:unless="${komputer.zasilacz == null}">
+            <td>
+                <p>Zasilacz:</p>
+            </td>
+            <td>
+                <img width="100px" height="100px" th:src="${komputer.zasilacz.obrazek}" />
+            </td>
+
+            <td>
+                <p th:text="${komputer.zasilacz.producent}"></p>
+            </td>
+
+
+            <td>
+                <p th:text="${komputer.zasilacz.nazwa}"></p>
+            </td>
+
+            <td>
+                <p th:text="${komputer.zasilacz.cena} +' zł' "></p>
+            </td>
+
+            <td>
+                <form th:action="@{/komputer/skladanie/usun}"  method="POST">
+                    <input name="delete" value="zasilacz" type="hidden"/>
+                    <input type="submit" value="Usuń" class="btn btn-red" />
+                </form>
+            </td>
+
+        </tr>
+
+
+        <tr th:if="${komputer.napedOptyczny == null}" >
+            <td>
+                <p>Napęd optyczny:</p>
+            </td>
+
+            <td>
+                <form th:action="@{/naped/list}" >
+                    <input type="submit" value="Dodaj Napęd Optyczny" class="btn btn-red" />
+                </form>
+            </td>
+        </tr>
+
+        <tr th:unless="${komputer.napedOptyczny == null}">
+            <td>
+                <p>Napęd optyczny:</p>
+            </td>
+            <td>
+                <img width="100px" height="100px" th:src="${komputer.napedOptyczny.obrazek}" />
+            </td>
+
+            <td>
+                <p th:text="${komputer.napedOptyczny.producent}"></p>
+            </td>
+
+
+            <td>
+                <p th:text="${komputer.napedOptyczny.nazwa}"></p>
+            </td>
+
+            <td>
+                <p th:text="${komputer.napedOptyczny.cena} +' zł' "></p>
+            </td>
+
+            <td>
+                <form th:action="@{/komputer/skladanie/usun}"  method="POST">
+                    <input name="delete" value="naped_optyczny" type="hidden"/>
+                    <input type="submit" value="Usuń" class="btn btn-red" />
+                </form>
+            </td>
+
+        </tr>
+
+
+        <tr th:if="${komputer.obudowa == null}" >
+            <td>
+                <p>Obudowa:</p>
+            </td>
+
+            <td>
+                <form th:action="@{/obudowa/list}" >
+                    <input type="submit" value="Dodaj Obudowę" class="btn btn-red" />
+                </form>
+            </td>
+        </tr>
+
+        <tr th:unless="${komputer.obudowa == null}">
+            <td>
+                <p>Obudowa:</p>
+            </td>
+            <td>
+                <img width="100px" height="100px" th:src="${komputer.obudowa.obrazek}" />
+            </td>
+
+            <td>
+                <p th:text="${komputer.obudowa.producent}"></p>
+            </td>
+
+
+            <td>
+                <p th:text="${komputer.obudowa.nazwa}"></p>
+            </td>
+
+            <td>
+                <p th:text="${komputer.obudowa.cena} +' zł' "></p>
+            </td>
+
+            <td>
+                <form th:action="@{/komputer/skladanie/usun}"  method="POST">
+                    <input name="delete" value="obudowa" type="hidden"/>
+                    <input type="submit" value="Usuń" class="btn btn-red" />
+                </form>
+            </td>
+
+        </tr>
+
+
+
+
+
+
+
+
+
+
+        <tr th:if="${komputer.dysk == null}" >
+            <td>
+                <p>Dysk:</p>
+            </td>
+
+
+            <td>
+                <form th:action="@{/dysk/list}">
+                    <input type="submit" value="Dodaj Dysk" class="btn btn-red" />
+                </form>
+            </td>
+        </tr>
+
+        <tr th:unless="${komputer.dysk == null}">
+            <td>
+                <p>Dysk:</p>
+            </td>
+            <td>
+                <img width="100px" height="100px" th:src="${komputer.dysk.obrazek}" />
+            </td>
+
+            <td>
+                <p th:text="${komputer.dysk.producent}"></p>
+            </td>
+
+            <td>
+                <p th:text="${komputer.dysk.nazwa}"></p>
+            </td>
+
+            <td>
+                <p th:text="${komputer.dysk.cena} +' zł' "></p>
+            </td>
+
+
+            <td>
+                <form th:action="@{/komputer/skladanie/usun}"  method="POST">
+                    <input name="delete" value="dysk" type="hidden"/>
+                    <input type="submit" value="Usuń" class="btn btn-red" />
+                </form>
+            </td>
+
+        </tr>
+
+
+
+
+        <tr>
+            <td colspan="3">
+                <form th:action="@{/koszyk/dodaj}"  method="POST">
+                    <input type="submit" value="Dodaj do koszyka" class="btn btn-red" />
+                </form>
+            </td>
+
+            <td>Razem:</td>
+            <td>
+                <p th:text="${komputer.cena} + ' zł'"></p>
+            </td>
+
+
+        </tr>
+
+
+
+
+
+    </th:block>
+
+
+</table>
+    <div id="content_footer"></div>
+    <div id="footer">
+        <p>Copyright &copy; PCMajster</a></p>
+    </div>
+</div>
+</body>
+</html>

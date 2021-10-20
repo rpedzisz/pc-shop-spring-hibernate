@@ -1,0 +1,281 @@
+{
+	"info": {
+		"_postman_id": "5126cd5a-4333-4552-844d-b4dba4d37a42",
+		"name": "it_shop",
+		"description": "Kolekcja requestów do projektu na zaliczenie",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Komputer",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/komputer/rest/0",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"komputer",
+						"rest",
+						"0"
+					]
+				},
+				"description": "Komputer o id=0"
+			},
+			"response": []
+		},
+		{
+			"name": "Zamowienie",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/zamowienia/rest/0",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"zamowienia",
+						"rest",
+						"0"
+					]
+				},
+				"description": "Wszystkie zamówienia dla klienta o numerze id=0"
+			},
+			"response": []
+		},
+		{
+			"name": "Dodaj procesor",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n        \"obrazek\": \"/images/procesory/procesor0.jpg\",\r\n        \"producent\": \"AMD\",\r\n        \"nazwa\": \"Ryzen 7 3200\",\r\n        \"socket\": \"AM4\",\r\n        \"iloscRdzeni\": 6,\r\n        \"taktowanie\": 3.6,\r\n        \"maksPamiec\": 128,\r\n        \"technologia\": \"7nm\",\r\n        \"cena\": 729.0,\r\n        \"tdp\": 65,\r\n        \"l1Cache\": \"6x 32kB I, 6x 64kB D\",\r\n        \"l2Cache\": \"6x 512kB\",\r\n        \"l3Cache\": \"2x 16MB\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/cpu/rest/add",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"cpu",
+						"rest",
+						"add"
+					]
+				},
+				"description": "Dodawanie procesora do bazy danych"
+			},
+			"response": []
+		},
+		{
+			"name": "Delete",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/cpu/rest/delete/166",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"cpu",
+						"rest",
+						"delete",
+						"166"
+					]
+				},
+				"description": "Usunięcie procesora o ID=166"
+			},
+			"response": []
+		},
+		{
+			"name": "PUT",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"obrazek\": \"/images/procesory/procesor0.jpg\",\r\n        \"producent\": \"AMD\",\r\n        \"nazwa\": \"Ryzen 5 3600\",\r\n        \"socket\": \"AM4\",\r\n        \"iloscRdzeni\": 6,\r\n        \"taktowanie\": 3.6,\r\n        \"maksPamiec\": 128,\r\n        \"technologia\": \"7nm\",\r\n        \"cena\": 739.0,\r\n        \"tdp\": 65,\r\n        \"l1Cache\": \"6x 32kB I, 6x 64kB D\",\r\n        \"l2Cache\": \"6x 512kB\",\r\n        \"l3Cache\": \"2x 16MB\"}"
+				},
+				"url": {
+					"raw": "localhost:8080/cpu/rest/put/0",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"cpu",
+						"rest",
+						"put",
+						"0"
+					]
+				},
+				"description": "Zmiana wartości w procesorze o ID=0"
+			},
+			"response": []
+		},
+		{
+			"name": "Get procesor producent",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/cpu/rest/producent/amd",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"cpu",
+						"rest",
+						"producent",
+						"amd"
+					]
+				},
+				"description": "Get dla procesora, gdzie producent = AMD"
+			},
+			"response": []
+		},
+		{
+			"name": "Płyta główna Get",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/mobo/rest/chipset/x570",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"mobo",
+						"rest",
+						"chipset",
+						"x570"
+					]
+				},
+				"description": "Get dla płyty głównej z danym chipsetem"
+			},
+			"response": []
+		},
+		{
+			"name": "POST dysk",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": " {\"obrazek\": \"/images/dyski/dysk0.jpg\",\r\n        \"producent\": \"Seagate\",\r\n        \"nazwa\": \"Barracuda Compute 3\",\r\n        \"pojemnosc\": 4096.0,\r\n        \"typ\": \"7200\",\r\n        \"cache\": 512,\r\n        \"wspolczynnikKsztaltu\": \"3.5\",\r\n        \"interfejs\": \"SATA6\",\r\n        \"cena\": 699.0\r\n }"
+				},
+				"url": {
+					"raw": "localhost:8080/dysk/rest/add",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"dysk",
+						"rest",
+						"add"
+					]
+				},
+				"description": "Post dla dysku"
+			},
+			"response": []
+		},
+		{
+			"name": "GET karty graficzne według pamięci",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/gpu/rest/memory/gddr6",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"gpu",
+						"rest",
+						"memory",
+						"gddr6"
+					]
+				},
+				"description": "Karty graficzne według pamięci (GDDR6)"
+			},
+			"response": []
+		},
+		{
+			"name": "Ram po typie",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/ram/type/DDR4",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"ram",
+						"type",
+						"DDR4"
+					]
+				},
+				"description": "Ram po typie pamięci (DDR4)"
+			},
+			"response": []
+		},
+		{
+			"name": "Wszystkie zasilacze",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/zasilacz/rest/all",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"zasilacz",
+						"rest",
+						"all"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}

@@ -1,0 +1,179 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>PC Majster</title>
+    <meta name="description" content="website description" />
+    <meta name="keywords" content="website keywords, website keywords" />
+    <meta http-equiv="content-type" content="text/html; charset=windows-1252" />
+    <link href="../static/css/style.css" th:href="@{/css/style.css}" rel="stylesheet" />
+</head>
+
+<body>
+<div id="main">
+    <div id="header">
+        <div id="logo">
+            <div id="logo_text">
+                <!-- class="logo_colour", allows you to change the colour of the text -->
+                <h1><a href="/index">PC<span class="logo_colour">Majster</span></a></h1>
+                <h2>Z nami zlozysz komputer marzen</h2>
+            </div>
+        </div>
+        <ul id="menu">
+            <li> <a href="/cpu/list"> Procesory</a>
+            </li>
+            <li> <a href="/mobo/list"> Plyty Glowne</a>
+            </li>
+            <li> <a href="/ram/list"> RAM-y</a>
+            </li>
+            <li><a href="/gpu/list"> Karty Graficzne</a>
+            </li>
+            <li><a href="/zasilacz/list"> Zasilacze</a>
+            </li>
+            <li><a href="/dysk/list"> Dyski</a>
+            </li>
+            <li><a href="/naped/list"> Napedy Optyczne</a>
+            </li>
+            <li><a href="/obudowa/list"> Obudowy </a>
+            </li>
+
+            <th:block th:unless="${session.klientId!=null}">
+                <li><a href="/rejestracja"> Rejestracja</a></li>
+                <li> <a href="/logowanie"> Logowanie</a></li>
+            </th:block>
+            <li> <a href="/komputer/skladanie"> Twoj Komputer</a></li>
+
+            <li><a href="/koszyk/list"> Koszyk</a></li>
+            <li><a href="/zamowienia/list"> Zamowienia</a> </li>
+
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+
+
+        </ul>
+    </div>
+
+
+
+    <table>
+    <th> </th>
+    <th>Producent</th>
+    <th>Nazwa</th>
+<th>Pojemność</th>
+    <th>Typ</th>
+    <th>Cache</th>
+    <th>Typ Kształtu</th>
+    <th>Interfejs</th>
+    <th>Cena</th>
+    <tr th:each="dysk : ${dysk}">
+        <td>
+            <img width="100px" height="100px" th:src="${dysk.obrazek}" />
+        </td>
+        <td>
+            <p th:text="${dysk.producent}"></p>
+        </td>
+        <td>
+            <p th:text="${dysk.nazwa}"></p>
+        </td>
+
+        <td>
+            <p th:text="${dysk.pojemnosc} + ' GB'"></p>
+        </td>
+
+        <td>
+            <p th:text="${dysk.typ}"></p>
+        </td>
+
+        <td>
+            <p th:text="${dysk.cache} + ' MB'"></p>
+        </td>
+
+        <td>
+            <p th:text="${dysk.wspolczynnikKsztaltu}"></p>
+        </td>
+
+        <td>
+            <p th:text="${dysk.interfejs}"></p>
+        </td>
+
+
+
+        <td>
+            <p th:text="${dysk.cena}+ ' zł'"></p>
+        </td>
+
+
+        <td>
+            <form th:action="@{/dysk/dodaj}"  method="POST">
+                <input name="dyskId" th:value="${dysk.dyskId}" type="hidden"/>
+                <input type="submit" value="Wybierz" class="btn btn-red" />
+            </form>
+        </td>
+
+
+
+
+
+    </tr>
+
+
+</table>
+    <div id="content_footer"></div>
+    <div id="footer">
+        <p>Copyright &copy; PCMajster</a></p>
+    </div>
+</div>
+
+</body>
+</html>

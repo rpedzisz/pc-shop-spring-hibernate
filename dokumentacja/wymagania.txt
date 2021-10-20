@@ -1,0 +1,3 @@
+Ocena na którą aspirujemy to 3.
+requesty znajdują się w folderze kolekcja_projekt.json
+dokumentacja znajduje się w folderze Dokumentacja.pdf
